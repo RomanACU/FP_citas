@@ -1,0 +1,44 @@
+Algoritmo Citas
+	Definir cantidad Como ENTERO
+	Escribir "Ingrese la cantidad de ciudadanos que harán una solicitud: "
+	Leer cantidad
+	
+	// Declarar matrices separadas para nombre y tiempo
+	Dimensionar nombres[cantidad]
+	Dimensionar tiempos[cantidad]
+	
+	Para i Desde 1 Hasta cantidad Hacer
+		Escribir "Ingrese el nombre del ciudadano/a: "
+		Leer nombres[i]  // Se usa la matriz de nombres
+		
+		// Confirmar que el tiempo no supere los 120 minutos
+        Repetir
+            Escribir "Ingrese el tiempo estimado en minutos (máximo 120):"
+            Leer tiempos[i] // Se usa la matriz de tiempos
+            
+            Si tiempos[i] > 120 Entonces
+                Escribir "Error: El tiempo máximo permitido es 120. Ingrese un valor menor."
+            FinSi
+        Hasta Que tiempos[i] <= 120
+	FinPara
+	// Ordenar por tiempo de menor a mayor (Método de burbuja)
+	Para i Desde 1 Hasta cantidad - 1 Hacer
+		Para j Desde 1 Hasta cantidad - i Hacer
+			Si tiempos[j] > tiempos[j + 1] Entonces
+				// Intercambiar tiempos
+				tempTiempo = tiempos[j]
+				tiempos[j] = tiempos[j + 1]
+				tiempos[j + 1] = tempTiempo
+				
+				// Intercambiar nombres
+				tempNombre = nombres[j]
+				nombres[j] = nombres[j + 1]
+				nombres[j + 1] = tempNombre
+			FinSi
+		FinPara
+	FinPara
+	Escribir "Lista de solicitudes registradas:"
+	Para i Desde 1 Hasta cantidad Hacer
+		Escribir "Nombre:", nombres[i], " | Tiempo de atención estimado:", tiempos[i]
+	FinPara
+FinAlgoritmo
